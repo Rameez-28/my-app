@@ -1,10 +1,18 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import About from './components/About';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
+
+import {
+  BrowserRouter as Router,
+  // Switch,
+  Route,
+  Routes,
+  Link
+  } from "react-router-dom";
 
 
 function App() {
@@ -45,13 +53,24 @@ else{
     <>
 
 {/* <Navbar title="TextUtils" aboutText="TextUtils"/> */}
+<Router>
 <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
 <Alert alert={alert}/> 
 <div className="container my-3" >
-
-<Textform showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/>
-{/* <About/> */}
+<Routes>
+          <Route path='/About' element={<About/>}/>
+          <Route path='/' element={<Textform showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/>}/>
+  
+</Routes>
 </div>
+</Router>
+{/* <About/> 
+ <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
+<Alert alert={alert}/> 
+<div className="container my-3" >
+<Textform showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/>
+</div> */}
+
 </>
   );
 }
